@@ -53,7 +53,8 @@ When the user asks Alexa to describe the scene, the Alexa Skills Kit triggers Am
 22. AmazonS3FullAccess
 
 23. go to policies->create policy ->policy editor->json
-24. <pre>
+24.paste the below code in the json editor and save
+25. <pre>
 {
     "Version": "2012-10-17",
     "Statement": [
