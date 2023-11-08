@@ -29,32 +29,22 @@ When the user asks Alexa to describe the scene, the Alexa Skills Kit triggers Am
 4. <pre>sudo apt-get install libopencv-dev python-opencv</pre>
 5. <pre>pip install matplotlib</pre>
 
-# Configure for AWS
-6. <pre>pip install boto3</pre>
-7. <pre>pip install awscli</pre>
-8. Go to https://console.aws.amazon.com/iam/
-   a. Users -> <yourname> -> Security Credentials -> 'Create Access Key'
-9. <pre>sudo aws configure</pre> and use the credentials (from above step)
 
-
-# Clone the code
-12. <pre>git clone https://github.com/aravind0015/smartcap.git</pre>
-13. open an account in the aws website
 
 # AWS Dynamo DB
-14. Login to your Amazon Console - https://console.aws.amazon.com/
-15. create a new user in the users in the left side of the page and give it a name and click on it .
-16. go to permissions->add permissions->attach policies directly ->search bar->add the below permissions
-17. AWSLambda_FullAccess
-18. AmazonRekognitionFullAccess
-19. AmazonDynamoDBFullAccess
-20. AmazonCloudWatchEvidentlyFullAccess
-21. AlexaForBusinessFullAccess
-22. AmazonS3FullAccess
+6. Login to your Amazon Console - https://console.aws.amazon.com/
+7. create a new user in the users in the left side of the page and give it a name and click on it .
+8. go to permissions->add permissions->attach policies directly ->search bar->add the below permissions
+9. AWSLambda_FullAccess
+10. AmazonRekognitionFullAccess
+11. AmazonDynamoDBFullAccess
+12. AmazonCloudWatchEvidentlyFullAccess
+13. AlexaForBusinessFullAccess
+14. AmazonS3FullAccess
 
-23. go to policies->create policy ->policy editor->json
-24.paste the below code in the json editor and save
-25. <pre>
+15. go to policies->create policy ->policy editor->json
+16.paste the below code in the json editor and save
+17. <pre>
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -67,34 +57,44 @@ When the user asks Alexa to describe the scene, the Alexa Skills Kit triggers Am
 }
 </pre>
 
-25. give the name visioncap to the policy and create the policy 
-26. go to permissions and add permissions and search for the newly created policy visioncap will be there and add the permission
-27.  now go to iam->users->user_name->create access key ->Application running outside AWS->next->create access key , copy the details of access key id  and secret access key 
+18. give the name visioncap to the policy and create the policy 
+19. go to permissions and add permissions and search for the newly created policy visioncap will be there and add the permission
+20.  now go to iam->users->user_name->create access key ->Application running outside AWS->next->create access key , copy the details of access key id  and secret access key
+
+# Configure for AWS
+21. <pre>pip install boto3</pre>
+22. <pre>pip install awscli</pre>
+23. <pre>sudo aws configure</pre> and use the credentials (from above step)
+
+# Clone the code
+24. <pre>git clone https://github.com/aravind0015/smartcap.git</pre>
+25. open an account in the aws website
+
 # dynamobd table creation and Amazon rekognition API 
-28. Go to Services -> DynamoDb -> Create Table
-29. Give table name (smartcap) and Primary partition key as guid (String). Click Done.
-30. the rekognition will be automatically added to the functionality as we have already given the amazonrekognitionfullaccess in iam 
+26. Go to Services -> DynamoDb -> Create Table
+27. Give table name (smartcap) and Primary partition key as guid (String). Click Done.
+28. the rekognition will be automatically added to the functionality as we have already given the amazonrekognitionfullaccess in iam 
 
 
 
 # AWS Lambda Function 
-31. Login to your Amazon Console - https://console.aws.amazon.com/. Go to IAM roles, create a new role for lambda giving permissions to the dynamoDB.
-32. Go to Services -> Lambda -> Create function -> Blueprints (seach for alexa and get the template related to color app). Select the role created in the previous step. 
-33. Copy the code given in 'aws_dynamodb.py' to your lambda function
-34. Change the table name(and/or region) in the code and the application id of the skill kit(get it from skills kit. it should look like amzn1.echo-sdk-ams.app.xxxx.xxxx)
+29. Login to your Amazon Console - https://console.aws.amazon.com/. Go to IAM roles, create a new role for lambda giving permissions to the dynamoDB.
+30. Go to Services -> Lambda -> Create function -> Blueprints (seach for alexa and get the template related to color app). Select the role created in the previous step. 
+31. Copy the code given in 'aws_dynamodb.py' to your lambda function
+32. Change the table name(and/or region) in the code and the application id of the skill kit(get it from skills kit. it should look like amzn1.echo-sdk-ams.app.xxxx.xxxx)
 
 # AWS Alexa Skills Kit  
-35. Got to https://developer.amazon.com/edw/home.html#/skills  
-36. Click on Add a new skill    
-37. Skill Information - Custom Skills, Give name like 'Smart Cap'  
-38. Go to interaction model and copy the code from aws_ask.json and paste it in Intent Schema  
-39. From 'aws_ask_helper.txt' file use custom slot types and sample utterances  
-40. Click save and make sure there are no errors  
-41. In the configuration tab: In the Endpoint past your Amazon Resource Name (Go to your Amazon lambda function to find it, would be something like  arn:aws:lambda:us-east-1:xxxx:function:xxxx)  
+33. Got to https://developer.amazon.com/edw/home.html#/skills  
+34. Click on Add a new skill    
+35. Skill Information - Custom Skills, Give name like 'Smart Cap'  
+36. Go to interaction model and copy the code from aws_ask.json and paste it in Intent Schema  
+37. From 'aws_ask_helper.txt' file use custom slot types and sample utterances  
+38. Click save and make sure there are no errors  
+39. In the configuration tab: In the Endpoint past your Amazon Resource Name (Go to your Amazon lambda function to find it, would be something like  arn:aws:lambda:us-east-1:xxxx:function:xxxx)  
 
 # Install the Alexa app and smart cap skills
-42. Install the Alexa app on your phone and login with your credential
-43. Enable smartcap skills (or your own skills)
+40. Install the Alexa app on your phone and login with your credential
+41. Enable smartcap skills (or your own skills)
 
 # When you are done with all the above steps
 #Testing instructions
