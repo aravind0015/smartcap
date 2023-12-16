@@ -24,8 +24,15 @@ message_to_update = 'MESSAGE_TO_UPDATE'
 # Replace 'Your user ID here. Get it using the instruction from alexa' with your actual user ID
 userId = 'AMA3QGRLPERN6GZRQJNIM3V3EOM7UNBJRO5VZJZJKCSXICFRAMKVKBHHOBU3XYOBTDAKZ67ACHTABZLCNYRRNNXSH3SC2T3Z3B4NJ3LL5KUDYS6P5AAU5BMPIN4J23JPBEFOBLGORTKLZL4Q52JJTEPCDRYOEFKZYYS476L24FCE22Z6ETDOTO5V65BDQ3USKI2LUMTI72CE7NS4NASJTMEZC34ACLET3SMPDY4AG42512SXGC5DM'
 
-# Create a DynamoDB resource using the specified region
-dynamodb = boto3.resource('dynamodb', region_name=aws_region)
+# Create an AWS session with temporary credentials
+session = boto3.Session(
+    aws_access_key_id='AKIA4V2PEK6SLYYMIQVD',
+    aws_secret_access_key='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',
+    region_name='us-east-1',
+)
+
+# Create a DynamoDB resource using the specified session
+dynamodb = session.resource('dynamodb')
 
 # Reference the table using the provided table name
 table = dynamodb.Table(dynamodb_table_name)
