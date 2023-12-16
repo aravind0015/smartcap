@@ -10,9 +10,14 @@ from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 import calendar
 import datetime
+session = boto3.Session(
+    aws_access_key_id='AKIA4V2PEK6SLYYMIQVD',
+aws_secret_access_key = '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' ,
+    region_name='ap-southeast-1',
+)
 
 #Specify the dynamodb details
-dynamodb = boto3.resource("dynamodb", region_name='us-east-1', endpoint_url="https://dynamodb.us-east-1.amazonaws.com")
+dynamodb = session.resource("dynamodb", endpoint_url="https://dynamodb.ap-southeast-1.amazonaws.com")
 
 table = dynamodb.Table('smartcap')
 
