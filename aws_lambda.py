@@ -1,4 +1,4 @@
-"""
+="""
 Code modified from the sample code of alexa skills kit-lambda function integration
 """
 #Header files
@@ -71,7 +71,7 @@ def lambda_handler(event, context):
     function.
     """
     if (event['session']['application']['applicationId'] !=
-            "amzn1.echo-sdk-ams.app.xxxx.xxxx"):
+            "amzn1.ask.skill.e5d633f8-7ef4-44a7-ba1d-febba7125a14"):
         raise ValueError("Invalid Application ID")
 
     if event['session']['new']:
